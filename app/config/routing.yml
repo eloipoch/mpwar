@@ -1,3 +1,8 @@
-NelmioApiDocBundle:
+api_docs:
   resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
   prefix:   /api/doc
+
+players_create:
+  path:     /players
+  defaults: { _controller: mpwar.controller.player.register:__invoke }
+  methods:  [POST]

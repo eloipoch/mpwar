@@ -1,10 +1,16 @@
 {
-    "name": "gimler/symfony-rest-edition",
+    "name": "eloipoch/symfony-mpwar-edition",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony REST Edition\" distribution",
+    "description": "The \"Symfony MPWAR Edition\"",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+          "": "src/"
+        },
+        "psr-4": {
+          "MPWAR\\Api\\": "app/src",
+          "MPWAR\\": "src/MPWAR"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -24,6 +30,14 @@
         "willdurand/hateoas-bundle": "1.0.*@dev",
         "hautelook/templated-uri-bundle": "~2.0",
         "willdurand/rest-extra-bundle": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5",
+        "behat/behat": "~3.0",
+        "behat/mink": "~1.6",
+        "behat/mink-browserkit-driver": "~1.2",
+        "behat/mink-extension": "~2.0",
+        "behat/symfony2-extension": "~2.0"
     },
     "conflict": {
         "symfony/routing": "2.4.1"
@@ -50,13 +64,5 @@
         "branch-alias": {
             "dev-master": "2.3-dev"
         }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.5",
-        "behat/behat": "~3.0",
-        "behat/mink": "~1.6",
-        "behat/mink-browserkit-driver": "~1.2",
-        "behat/mink-extension": "~2.0",
-        "behat/symfony2-extension": "~2.0"
     }
 }

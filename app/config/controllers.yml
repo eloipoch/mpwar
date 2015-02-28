@@ -1,0 +1,4 @@
+services:
+
+  mpwar.controller.player.register:
+    class: MPWAR\Api\Controller\Player\PlayerRegisterController
