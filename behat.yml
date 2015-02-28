@@ -1,0 +1,13 @@
+default:
+
+  extensions:
+    Behat\Symfony2Extension: ~
+    Behat\MinkExtension:
+      sessions:
+        my_session:
+          symfony2: ~
+
+  suites:
+    default:
+      contexts:
+        - MPWAR\Test\FeatureContext

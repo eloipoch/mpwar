@@ -11,3 +11,10 @@ framework:
 web_profiler:
     toolbar: false
     intercept_redirects: false
+
+
+parameters:
+  test.client.parameters:
+    HTTP_ACCEPT:
+    HTTP_ACCEPT_LANGUAGE:
+    HTTP_ACCEPT_CHARSET:
