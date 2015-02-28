@@ -12,4 +12,14 @@ final class PlayerStub
     {
         return new Player($id, $name);
     }
+
+    public static function random()
+    {
+        return self::create(PlayerIdStub::random(), PlayerNameStub::random());
+    }
+
+    public static function withId(PlayerId $id)
+    {
+        return self::create($id, PlayerNameStub::random());
+    }
 }

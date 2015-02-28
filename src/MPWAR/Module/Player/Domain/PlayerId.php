@@ -27,4 +27,9 @@ final class PlayerId
             throw new PlayerIdNotValidException($id);
         }
     }
+
+    public function __toString()
+    {
+        return $this->id();
+    }
 }

@@ -6,9 +6,6 @@ use InvalidArgumentException;
 
 final class PlayerNameNotValidException extends InvalidArgumentException
 {
-    /**
-     * @param string $name
-     */
     public function __construct($name)
     {
         parent::__construct(sprintf('Invalid Player name value <%s>', $name));

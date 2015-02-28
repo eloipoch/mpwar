@@ -1,4 +1,7 @@
 services:
 
   mpwar.player.infrastructure.palyer_repository:
+    alias: mpwar.player.infrastructure.palyer_repository.in_memory
+
+  mpwar.player.infrastructure.palyer_repository.in_memory:
     class: MPWAR\Module\Player\Infrastructure\Persistence\PlayerRepositoryInMemory

@@ -21,6 +21,11 @@ final class Player implements RecordsMessages
         $this->registrationDate = $registrationDate ?: new DateTimeImmutable();
     }
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     public static function register(PlayerId $id, PlayerName $name)
     {
         return new Player($id, $name);
