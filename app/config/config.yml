@@ -76,15 +76,3 @@ fos_rest:
     access_denied_listener:
         json: true
     body_listener: true
-
-fos_http_cache:
-    cache_control:
-        rules:
-            -
-                match:
-                    path: ^/notes
-                    methods: [GET, HEAD]
-                headers:
-                    cache_control: { public: true, max_age: 15, s_maxage: 30 }
-                    last_modified: "-1 hour"
-                    vary: [Accept-Encoding, Accept-Language]

@@ -4,7 +4,6 @@ use Acme\DemoBundle\AcmeDemoBundle;
 use Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle;
 use Bazinga\Bundle\RestExtraBundle\BazingaRestExtraBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use FOS\HttpCacheBundle\FOSHttpCacheBundle;
 use FOS\RestBundle\FOSRestBundle;
 use Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle;
 use JMS\SerializerBundle\JMSSerializerBundle;
@@ -41,8 +40,6 @@ class AppKernel extends Kernel
             new BazingaHateoasBundle(),
             new HautelookTemplatedUriBundle(),
             new BazingaRestExtraBundle(),
-
-            new FOSHttpCacheBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
