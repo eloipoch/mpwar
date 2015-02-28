@@ -1,5 +1,23 @@
 <?php
 
+use Acme\DemoBundle\AcmeDemoBundle;
+use Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle;
+use Bazinga\Bundle\RestExtraBundle\BazingaRestExtraBundle;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use FOS\HttpCacheBundle\FOSHttpCacheBundle;
+use FOS\RestBundle\FOSRestBundle;
+use Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle;
+use JMS\SerializerBundle\JMSSerializerBundle;
+use Nelmio\ApiDocBundle\NelmioApiDocBundle;
+use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
+use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
+use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
+use Symfony\Bundle\AsseticBundle\AsseticBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\MonologBundle\MonologBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -7,29 +25,31 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
-            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
-            new Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle(),
-            new Bazinga\Bundle\RestExtraBundle\BazingaRestExtraBundle(),
-        );
+        $bundles = [
+            new FrameworkBundle(),
+            new SensioFrameworkExtraBundle(),
+            new SecurityBundle(),
+            new TwigBundle(),
+            new AsseticBundle(),
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            new MonologBundle(),
+            new DoctrineBundle(),
+
+            new FOSRestBundle(),
+            new NelmioApiDocBundle(),
+            new JMSSerializerBundle(),
+            new BazingaHateoasBundle(),
+            new HautelookTemplatedUriBundle(),
+            new BazingaRestExtraBundle(),
+
+            new FOSHttpCacheBundle(),
+        ];
+
+        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
+            $bundles[] = new AcmeDemoBundle();
+            $bundles[] = new WebProfilerBundle();
+            $bundles[] = new SensioDistributionBundle();
+            $bundles[] = new SensioGeneratorBundle();
         }
 
         return $bundles;
