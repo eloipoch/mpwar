@@ -39,7 +39,9 @@
         "behat/mink": "~1.6",
         "behat/mink-browserkit-driver": "~1.2",
         "behat/mink-extension": "~2.0",
-        "behat/symfony2-extension": "~2.0"
+        "behat/symfony2-extension": "~2.0",
+        "mockery/mockery": "~0.9",
+        "fzaninotto/faker": "~1.4"
     },
     "conflict": {
         "symfony/routing": "2.4.1"

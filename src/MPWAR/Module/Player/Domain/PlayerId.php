@@ -16,6 +16,11 @@ final class PlayerId
         $this->id = $id;
     }
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     private function guard($id)
     {
         if (!Uuid::isValid($id)) {

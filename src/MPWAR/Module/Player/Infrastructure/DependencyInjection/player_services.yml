@@ -4,8 +4,16 @@ services:
 
   mpwar.player.command_handler.player_registration:
     class: MPWAR\Module\Player\Application\CommandHandler\PlayerRegistrationCommandHandler
+    arguments:
+      - @mpwar.player.service.player_registrar
     tags:
       - { name: command_handler, handles: MPWAR\Module\Player\Contract\Command\PlayerRegistration }
 
 
   # Services
+
+  mpwar.player.service.player_registrar:
+    class: MPWAR\Module\Player\Application\Service\PlayerRegistrar
+    arguments:
+      - @mpwar.player.infrastructure.palyer_repository
+    public: false

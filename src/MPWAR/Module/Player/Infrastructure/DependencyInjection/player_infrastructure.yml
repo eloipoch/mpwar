@@ -1,1 +1,4 @@
 services:
+
+  mpwar.player.infrastructure.palyer_repository:
+    class: MPWAR\Module\Player\Infrastructure\Persistence\PlayerRepositoryInMemory

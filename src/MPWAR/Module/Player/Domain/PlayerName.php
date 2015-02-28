@@ -15,6 +15,11 @@ final class PlayerName
         $this->name = $name;
     }
 
+    public function name()
+    {
+        return $this->name;
+    }
+
     private function guard($name)
     {
         if (empty($name) || !is_string($name)) {
