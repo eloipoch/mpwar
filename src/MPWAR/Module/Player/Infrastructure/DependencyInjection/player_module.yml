@@ -1,0 +1,3 @@
+imports:
+  - { resource: "player_services.yml" }
+  - { resource: "player_infrastructure.yml" }

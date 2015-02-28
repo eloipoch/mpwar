@@ -1,0 +1,2 @@
+imports:
+  - { resource: "../../../../../Module/Player/Infrastructure/DependencyInjection/player_module.yml" }

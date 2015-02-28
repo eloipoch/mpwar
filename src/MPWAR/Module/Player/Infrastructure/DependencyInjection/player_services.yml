@@ -1,0 +1,11 @@
+services:
+
+  # Command Handlers
+
+  mpwar.player.command_handler.player_registration:
+    class: MPWAR\Module\Player\Application\CommandHandler\PlayerRegistrationCommandHandler
+    tags:
+      - { name: command_handler, handles: MPWAR\Module\Player\Contract\Command\PlayerRegistration }
+
+
+  # Services

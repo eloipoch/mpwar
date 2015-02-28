@@ -1,4 +1,6 @@
 services:
 
-  mpwar.controller.player.register:
-    class: MPWAR\Api\Controller\Player\PlayerRegisterController
+  mpwar.controller.player.post:
+    class: MPWAR\Api\Controller\Player\PlayerPostController
+    arguments:
+      - @command_bus

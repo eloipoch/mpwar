@@ -15,4 +15,4 @@ Feature: Register a player
       }
     """
     Then the response code should be 201
-    Then the response should be empty
+    And the response should be empty

@@ -7,10 +7,12 @@ use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use FOS\RestBundle\FOSRestBundle;
 use Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle;
 use JMS\SerializerBundle\JMSSerializerBundle;
+use MPWAR\Infrastructure\Symfony\Bundle\MPWARBundle;
 use Nelmio\ApiDocBundle\NelmioApiDocBundle;
 use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
+use SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle;
 use Symfony\Bundle\AsseticBundle\AsseticBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
@@ -40,6 +42,9 @@ class AppKernel extends Kernel
             new BazingaHateoasBundle(),
             new HautelookTemplatedUriBundle(),
             new BazingaRestExtraBundle(),
+
+            new MPWARBundle(),
+            new SimpleBusCommandBusBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
