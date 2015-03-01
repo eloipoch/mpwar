@@ -1,0 +1,8 @@
+MPWAR\Module\Player\Domain\PlayerId:
+  type: embeddable
+
+  id:
+    id:
+      type: string
+      length: 36
+

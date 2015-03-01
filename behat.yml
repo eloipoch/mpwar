@@ -10,4 +10,7 @@ default:
   suites:
     default:
       contexts:
-        - MPWAR\Test\FeatureContext
+        - MPWAR\Test\FeatureContext:
+            entityManager: @doctrine.orm.entity_manager
+        - MPWAR\Module\Player\Test\PlayerContext:
+            commandBus: @command_bus

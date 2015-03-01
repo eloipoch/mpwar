@@ -15,5 +15,5 @@ services:
   mpwar.player.service.player_registrar:
     class: MPWAR\Module\Player\Application\Service\PlayerRegistrar
     arguments:
-      - @mpwar.player.infrastructure.palyer_repository
+      - @mpwar.player.infrastructure.player_repository
     public: false

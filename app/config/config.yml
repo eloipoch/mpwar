@@ -45,7 +45,14 @@ doctrine:
         charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+        entity_managers:
+            default:
+              mappings:
+                player:
+                  type: yml
+                  dir: %kernel.root_dir%/../src/MPWAR/Module/Player/Infrastructure/Persistence
+                  prefix: MPWAR\Module\Player\Domain
+                  is_bundle: false
 
 sensio_framework_extra:
     view: { annotations: false }

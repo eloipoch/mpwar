@@ -6,6 +6,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Mink\Driver\BrowserKitDriver;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Doctrine\ORM\EntityManager;
+use MPWAR\Infrastructure\Doctrine\DatabaseCleaner;
 use PHPUnit_Framework_Assert as Assertions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +15,18 @@ use Symfony\Component\HttpFoundation\Response;
 class FeatureContext extends RawMinkContext implements SnippetAcceptingContext
 {
     private $headers = [];
+    private $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /** @BeforeScenario */
+    public function setUp()
+    {
+        DatabaseCleaner::clean($this->entityManager);
+    }
 
     /**
      * @Given /^I set header "([^"]*)" with value "([^"]*)"$/

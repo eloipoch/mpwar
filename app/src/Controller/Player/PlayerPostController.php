@@ -4,6 +4,7 @@ namespace MPWAR\Api\Controller\Player;
 
 use FOS\RestBundle\View\View;
 use MPWAR\Module\Player\Contract\Command\PlayerRegistration;
+use MPWAR\Module\Player\Contract\Exception\PlayerAlreadyExistsException;
 use MPWAR\Module\Player\Contract\Exception\PlayerIdNotValidException;
 use MPWAR\Module\Player\Contract\Exception\PlayerNameNotValidException;
 use SimpleBus\Message\Bus\MessageBus;
@@ -44,6 +45,14 @@ final class PlayerPostController
                     'message' => $exception->getMessage(),
                 ],
                 Response::HTTP_BAD_REQUEST
+            );
+        } catch (PlayerAlreadyExistsException $exception) {
+            $response = View::create(
+                [
+                    'code'    => $exception->getCode(),
+                    'message' => $exception->getMessage(),
+                ],
+                Response::HTTP_CONFLICT
             );
         }
 

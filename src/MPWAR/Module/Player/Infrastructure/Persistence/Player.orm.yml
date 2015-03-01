@@ -1,0 +1,16 @@
+MPWAR\Module\Player\Domain\Player:
+  type:  entity
+  table: player
+
+  fields:
+    registrationDate:
+      type: datetime
+      column: registered_at
+
+  embedded:
+    id:
+      class: MPWAR\Module\Player\Domain\PlayerId
+      columnPrefix: false
+    name:
+      class: MPWAR\Module\Player\Domain\PlayerName
+      columnPrefix: false

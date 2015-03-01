@@ -1,7 +1,12 @@
 services:
 
-  mpwar.player.infrastructure.palyer_repository:
-    alias: mpwar.player.infrastructure.palyer_repository.in_memory
+  mpwar.player.infrastructure.player_repository:
+    alias: mpwar.player.infrastructure.player_repository.mysql
 
-  mpwar.player.infrastructure.palyer_repository.in_memory:
+  mpwar.player.infrastructure.player_repository.in_memory:
     class: MPWAR\Module\Player\Infrastructure\Persistence\PlayerRepositoryInMemory
+
+  mpwar.player.infrastructure.player_repository.mysql:
+    class: MPWAR\Module\Player\Infrastructure\Persistence\PlayerRepositoryMySql
+    arguments:
+      - @doctrine.orm.entity_manager

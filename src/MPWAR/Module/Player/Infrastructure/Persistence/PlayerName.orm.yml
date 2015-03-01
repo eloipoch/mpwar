@@ -1,0 +1,8 @@
+MPWAR\Module\Player\Domain\PlayerName:
+  type: embeddable
+
+  fields:
+    name:
+      type: string
+      length: 255
+
