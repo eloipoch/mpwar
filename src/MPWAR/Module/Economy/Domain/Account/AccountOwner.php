@@ -1,11 +1,11 @@
 <?php
 
-namespace MPWAR\Module\Player\Domain;
+namespace MPWAR\Module\Economy\Domain\Account;
 
-use MPWAR\Module\Player\Contract\Exception\PlayerIdNotValidException;
+use MPWAR\Module\Economy\Contract\Exception\AccountOwnerNotValidException;
 use Rhumsaa\Uuid\Uuid;
 
-final class PlayerId
+final class AccountOwner
 {
     private $value;
 
@@ -24,12 +24,7 @@ final class PlayerId
     private function guard($value)
     {
         if (!Uuid::isValid($value)) {
-            throw new PlayerIdNotValidException($value);
+            throw new AccountOwnerNotValidException($value);
         }
-    }
-
-    public function __toString()
-    {
-        return $this->value();
     }
 }

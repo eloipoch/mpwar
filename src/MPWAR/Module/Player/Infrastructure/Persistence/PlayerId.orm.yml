@@ -2,7 +2,8 @@ MPWAR\Module\Player\Domain\PlayerId:
   type: embeddable
 
   id:
-    id:
+    value:
       type: string
       length: 36
+      column: id
 

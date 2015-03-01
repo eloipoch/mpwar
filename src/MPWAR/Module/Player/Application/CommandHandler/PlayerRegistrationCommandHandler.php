@@ -4,6 +4,7 @@ namespace MPWAR\Module\Player\Application\CommandHandler;
 
 use MPWAR\Module\Player\Application\Service\PlayerRegistrar;
 use MPWAR\Module\Player\Contract\Command\PlayerRegistration;
+use MPWAR\Module\Player\Contract\Exception\PlayerAlreadyExistsException;
 use MPWAR\Module\Player\Contract\Exception\PlayerIdNotValidException;
 use MPWAR\Module\Player\Contract\Exception\PlayerNameNotValidException;
 use MPWAR\Module\Player\Domain\PlayerId;
@@ -21,12 +22,11 @@ final class PlayerRegistrationCommandHandler implements MessageHandler
     }
 
     /**
-     * Handles the given message.
-     *
      * @param PlayerRegistration|Message $message
      *
      * @throws PlayerIdNotValidException
      * @throws PlayerNameNotValidException
+     * @throws PlayerAlreadyExistsException
      *
      * @return void
      */

@@ -1,0 +1,19 @@
+services:
+
+  # Domain Event Susbcribers
+
+  mpwar.economy.domain_event_subscriber.create_account_on_player_registered:
+    class: MPWAR\Module\Economy\Application\DomainEventSubscriber\CreateAccountOnPlayerRegistered
+    arguments:
+      - @mpwar.economy.service.account_opener
+    tags:
+      - { name: event_subscriber, subscribes_to: MPWAR\Module\Player\Contract\DomainEvent\PlayerRegistered }
+
+
+  # Services
+
+  mpwar.economy.service.account_opener:
+    class: MPWAR\Module\Economy\Application\Service\AccountOpener
+    arguments:
+      - @mpwar.economy.infrastructure.account_repository
+    public: false

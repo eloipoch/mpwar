@@ -41,7 +41,7 @@ final class Player implements RecordsMessages
     {
         $player = new Player($id, $name);
 
-        $player->record(new PlayerRegistered($id->id(), $player->registrationDate(), $name->name()));
+        $player->record(new PlayerRegistered($id->value(), $player->registrationDate(), $name->value()));
 
         return $player;
     }

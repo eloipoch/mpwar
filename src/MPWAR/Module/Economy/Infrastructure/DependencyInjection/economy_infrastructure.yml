@@ -1,0 +1,8 @@
+services:
+
+  mpwar.economy.infrastructure.account_repository:
+    alias: mpwar.economy.infrastructure.account_repository.in_memory
+
+  mpwar.economy.infrastructure.account_repository.in_memory:
+    class: MPWAR\Module\Economy\Infrastructure\Persistence\AccountRepositoryInMemory
+

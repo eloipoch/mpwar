@@ -6,24 +6,24 @@ use MPWAR\Module\Player\Contract\Exception\PlayerNameNotValidException;
 
 final class PlayerName
 {
-    private $name;
+    private $value;
 
-    public function __construct($name)
+    public function __construct($value)
     {
-        $this->guard($name);
+        $this->guard($value);
 
-        $this->name = $name;
+        $this->value = $value;
     }
 
-    public function name()
+    public function value()
     {
-        return $this->name;
+        return $this->value;
     }
 
-    private function guard($name)
+    private function guard($value)
     {
-        if (empty($name) || !is_string($name)) {
-            throw new PlayerNameNotValidException($name);
+        if (empty($value) || !is_string($value)) {
+            throw new PlayerNameNotValidException($value);
         }
     }
 }

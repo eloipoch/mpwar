@@ -2,7 +2,6 @@
 
 namespace MPWAR\Module\Player\Tests\Behaviour;
 
-use Mockery as m;
 use MPWAR\Module\Player\Application\CommandHandler\PlayerRegistrationCommandHandler;
 use MPWAR\Module\Player\Application\Service\PlayerRegistrar;
 use MPWAR\Module\Player\Contract\Exception\PlayerAlreadyExistsException;
@@ -53,7 +52,7 @@ final class PlayerRegistrationTest extends PlayerModuleUnitTestCase
         $command  = PlayerRegistrationStub::random();
         $playerId = PlayerIdStub::create($command->id());
 
-        $this->shouldSearchPlayer($playerId, PlayerStub::withId($playerId));
+        $this->shouldSearchPlayer($playerId, PlayerStub::identified($playerId));
 
         $this->handler->handle($command);
     }
@@ -66,7 +65,7 @@ final class PlayerRegistrationTest extends PlayerModuleUnitTestCase
     {
         $this->setExpectedException(PlayerIdNotValidException::class);
 
-        $command = PlayerRegistrationStub::withId($id);
+        $command = PlayerRegistrationStub::identified($id);
 
         $this->handler->handle($command);
     }
@@ -88,7 +87,7 @@ final class PlayerRegistrationTest extends PlayerModuleUnitTestCase
     {
         $this->setExpectedException(PlayerNameNotValidException::class);
 
-        $command = PlayerRegistrationStub::withName($name);
+        $command = PlayerRegistrationStub::named($name);
 
         $this->handler->handle($command);
     }

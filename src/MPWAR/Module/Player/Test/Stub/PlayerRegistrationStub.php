@@ -14,18 +14,18 @@ final class PlayerRegistrationStub
     public static function random()
     {
         return self::create(
-            PlayerIdStub::random()->id(),
-            PlayerNameStub::random()->name()
+            PlayerIdStub::random()->value(),
+            PlayerNameStub::random()->value()
         );
     }
 
-    public static function withId($id)
+    public static function identified($id)
     {
-        return self::create($id, PlayerNameStub::random()->name());
+        return self::create($id, PlayerNameStub::random()->value());
     }
 
-    public static function withName($name)
+    public static function named($name)
     {
-        return self::create(PlayerIdStub::random()->id(), $name);
+        return self::create(PlayerIdStub::random()->value(), $name);
     }
 }

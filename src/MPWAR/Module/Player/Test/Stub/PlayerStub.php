@@ -18,7 +18,7 @@ final class PlayerStub
         return self::create(PlayerIdStub::random(), PlayerNameStub::random());
     }
 
-    public static function withId(PlayerId $id)
+    public static function identified(PlayerId $id)
     {
         return self::create($id, PlayerNameStub::random());
     }

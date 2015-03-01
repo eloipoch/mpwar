@@ -2,7 +2,8 @@ MPWAR\Module\Player\Domain\PlayerName:
   type: embeddable
 
   fields:
-    name:
+    value:
       type: string
       length: 255
+      column: name
 

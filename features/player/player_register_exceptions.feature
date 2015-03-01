@@ -42,7 +42,7 @@ Feature: Register a player
     """
       {
         "code":    "player_identifier_not_valid",
-        "message": "Invalid Player identifier value <1>"
+        "message": "Invalid Player Identifier value <1>"
       }
     """
 

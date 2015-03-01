@@ -18,11 +18,11 @@ final class PlayerRepositoryInMemory implements PlayerRepository
 
     public function add(Player $player)
     {
-        $this->players->set($player->id()->id(), $player);
+        $this->players->set($player->id()->value(), $player);
     }
 
     public function search(PlayerId $id)
     {
-        return $this->players->get($id->id());
+        return $this->players->get($id->value());
     }
 }

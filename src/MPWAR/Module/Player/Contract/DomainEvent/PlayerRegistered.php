@@ -3,9 +3,9 @@
 namespace MPWAR\Module\Player\Contract\DomainEvent;
 
 use DateTimeImmutable;
-use SimpleBus\Message\Message;
+use SimpleBus\Message\Type\Event;
 
-final class PlayerRegistered implements Message
+final class PlayerRegistered implements Event
 {
     private $aggregateId;
     private $occurredOn;

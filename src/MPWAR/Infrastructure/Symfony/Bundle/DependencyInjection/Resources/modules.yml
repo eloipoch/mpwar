@@ -1,2 +1,3 @@
 imports:
+  - { resource: "../../../../../Module/Economy/Infrastructure/DependencyInjection/economy_module.yml" }
   - { resource: "../../../../../Module/Player/Infrastructure/DependencyInjection/player_module.yml" }
