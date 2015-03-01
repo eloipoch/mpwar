@@ -37,7 +37,7 @@ siguiente comando:
     curl -sS https://getcomposer.org/installer | php
 
 Entonces usa el comando `composer install` para requerir las dependencias
-desde la raíz de tu proyecto:
+desde la raíz de tu proyecto y configurar los parámetros de manera oportuna:
 
     php composer.phar install -o
 
@@ -53,7 +53,15 @@ Ejecutar el script `check.php` desde la línea de comandos:
     php app/check.php
 
 
-3) Ejecutar los Tests
+3) Crear la base datos
+----------------------
+
+Crear la base de datos configurada anteriormente ejecutando el comando:
+
+    ./app/console doctrine:database:create
+
+
+4) Ejecutar los Tests
 ----------------------
 
 Comprobar que el código funciona ejecutando los tests:
@@ -61,7 +69,7 @@ Comprobar que el código funciona ejecutando los tests:
     ./bin/phpunit -c app/
 
 
-4) Empezar a Programar
+5) Empezar a Programar
 ----------------------
 
 Enhorabuena!! Ya lo tienes todo preparado para empezar a programar :)
