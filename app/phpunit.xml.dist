@@ -15,10 +15,6 @@
         bootstrap="./autoload.php">
 
     <testsuites>
-        <testsuite name="Bundles">
-            <directory>../src/*/*Bundle/Tests</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests</directory>
-        </testsuite>
         <testsuite name="MPWAR Modules">
             <directory>../src/MPWAR/Module/*/Tests</directory>
         </testsuite>
@@ -28,11 +24,6 @@
         <whitelist>
             <directory>../src/</directory>
             <exclude>
-                <directory>../src/*/*Bundle/Resources</directory>
-                <directory>../src/*/*Bundle/Tests</directory>
-                <directory>../src/*/Bundle/*Bundle/Resources</directory>
-                <directory>../src/*/Bundle/*Bundle/Tests</directory>
-
                 <directory>../src/MPWAR/Test</directory>
                 <directory>../src/MPWAR/Module/*/Tests</directory>
                 <directory>../src/MPWAR/Module/*/Test</directory>
@@ -47,5 +38,4 @@
     <!--<logging>-->
         <!--<log type="coverage-html" target="../build/coverage" lowUpperBound="70" highLowerBound="90"/>-->
     <!--</logging>-->
-
 </phpunit>

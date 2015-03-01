@@ -1,76 +1,77 @@
 {
-    "name": "eloipoch/symfony-mpwar-edition",
-    "license": "MIT",
-    "type": "project",
-    "description": "The \"Symfony MPWAR Edition\"",
-    "autoload": {
-        "psr-0": {
-          "": "src/"
-        },
-        "psr-4": {
-          "MPWAR\\Api\\": "app/src",
-          "MPWAR\\": "src/MPWAR"
-        }
+  "name": "eloipoch/symfony-mpwar-edition",
+  "license": "MIT",
+  "type": "project",
+  "description": "The \"Symfony MPWAR Edition\"",
+  "require": {
+    "php": ">=5.5",
+
+    "symfony/symfony": "~2.6",
+    "sensio/distribution-bundle": "2.3.*",
+    "sensio/framework-extra-bundle": "2.3.*",
+    "twig/extensions": "1.0.*",
+    "sensio/generator-bundle": "2.3.*",
+    "symfony/icu": "1.0.*",
+
+    "symfony/monolog-bundle": "~2.3",
+
+    "doctrine/doctrine-bundle": "~1.4",
+    "doctrine/orm": "2.5.x-dev",
+    "doctrine/dbal": "2.5.x-dev",
+    "doctrine/common": "2.5.x-dev",
+
+    "friendsofsymfony/rest-bundle": "1.4.*",
+    "jms/serializer-bundle": "0.13.*@dev",
+    "willdurand/hateoas-bundle": "1.0.*@dev",
+    "hautelook/templated-uri-bundle": "~2.0",
+    "willdurand/rest-extra-bundle": "~1.0",
+
+    "simple-bus/symfony-bridge": "~3.0",
+
+    "rhumsaa/uuid": "~2.8",
+    "igorw/compose": "~1.0",
+    "nikic/iter": "~1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.5",
+
+    "behat/behat": "~3.0",
+    "behat/mink": "~1.6",
+    "behat/mink-browserkit-driver": "~1.2",
+    "behat/mink-extension": "~2.0",
+    "behat/symfony2-extension": "~2.0",
+
+    "mockery/mockery": "~0.9",
+
+    "fzaninotto/faker": "~1.4"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "src/"
     },
-    "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "~2.3",
-        "symfony/icu": "1.0.*",
-        "doctrine/orm": "2.5.x-dev",
-        "doctrine/dbal": "2.5.x-dev",
-        "doctrine/common": "2.5.x-dev",
-        "doctrine/doctrine-bundle": "~1.4",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/monolog-bundle": "~2.3",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
-        "jms/serializer-bundle": "0.13.*@dev",
-        "friendsofsymfony/rest-bundle": "1.4.*",
-        "nelmio/api-doc-bundle": "~2.4",
-        "willdurand/hateoas-bundle": "1.0.*@dev",
-        "hautelook/templated-uri-bundle": "~2.0",
-        "willdurand/rest-extra-bundle": "~1.0",
-        "simple-bus/symfony-bridge": "~3.0",
-        "rhumsaa/uuid": "~2.8",
-        "igorw/compose": "~1.0",
-        "nikic/iter": "~1.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.5",
-        "behat/behat": "~3.0",
-        "behat/mink": "~1.6",
-        "behat/mink-browserkit-driver": "~1.2",
-        "behat/mink-extension": "~2.0",
-        "behat/symfony2-extension": "~2.0",
-        "mockery/mockery": "~0.9",
-        "fzaninotto/faker": "~1.4"
-    },
-    "conflict": {
-        "symfony/routing": "2.4.1"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ]
-    },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "minimum-stability": "stable",
-    "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web",
-        "branch-alias": {
-            "dev-master": "2.3-dev"
-        }
+    "psr-4": {
+      "MPWAR\\Api\\": "app/src",
+      "MPWAR\\": "src/MPWAR"
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+    ],
+    "post-update-cmd": [
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+    ]
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "symfony-app-dir": "app",
+    "symfony-web-dir": "web"
+  }
 }

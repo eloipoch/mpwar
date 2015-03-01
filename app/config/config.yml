@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: controllers.yml }
-    - { resource: security.yml }
 
 framework:
     translator:      { fallback: %locale% }
@@ -24,14 +23,6 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
-
-# Assetic Configuration
-assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-    bundles:        [ ]
-    filters:
-        cssrewrite: ~
 
 # Doctrine Configuration
 doctrine:
@@ -66,34 +57,18 @@ sensio_framework_extra:
     view: { annotations: false }
 
 fos_rest:
-    disable_csrf_role: ROLE_API
-    param_fetcher_listener: true
-    view:
-        mime_types:
-            json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
-        view_response_listener: 'force'
-        formats:
-            xml:  true
-            json: true
-        templating_formats:
-            html: true
-    format_listener:
-        rules:
-            - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
-        media_type:
-            version_regex: '/(v|version)=(?P<version>[0-9\.]+)/'
-    exception:
-        codes:
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
-            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
-        messages:
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
-    allowed_methods_listener: true
-    access_denied_listener:
-        json: true
-    body_listener: true
+  format_listener:
+    rules:
+      - { path: ~, host: ~, fallback_format: json, prefer_extension: false }
+  view:
+    view_response_listener: force
+  serializer:
+    serialize_null: true
 
 jms_serializer:
+    visitors:
+        json:
+            options: JSON_PRETTY_PRINT
     metadata:
         directories:
             player:

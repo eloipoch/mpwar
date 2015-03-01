@@ -12,7 +12,6 @@ web_profiler:
     toolbar: false
     intercept_redirects: false
 
-
 parameters:
   test.client.parameters:
     HTTP_ACCEPT:
