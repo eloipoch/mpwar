@@ -16,4 +16,5 @@ services:
     class: MPWAR\Module\Player\Application\Service\PlayerRegistrar
     arguments:
       - @mpwar.player.infrastructure.player_repository
+      - @event_bus
     public: false

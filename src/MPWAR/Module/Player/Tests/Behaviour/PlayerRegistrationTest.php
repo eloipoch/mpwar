@@ -11,6 +11,7 @@ use MPWAR\Module\Player\Contract\Exception\PlayerNameNotValidException;
 use MPWAR\Module\Player\Test\PlayerModuleUnitTestCase;
 use MPWAR\Module\Player\Test\Stub\PlayerIdStub;
 use MPWAR\Module\Player\Test\Stub\PlayerNameStub;
+use MPWAR\Module\Player\Test\Stub\PlayerRegisteredStub;
 use MPWAR\Module\Player\Test\Stub\PlayerRegistrationStub;
 use MPWAR\Module\Player\Test\Stub\PlayerStub;
 
@@ -23,7 +24,7 @@ final class PlayerRegistrationTest extends PlayerModuleUnitTestCase
     {
         parent::setUp();
 
-        $registrar     = new PlayerRegistrar($this->playerRepository());
+        $registrar     = new PlayerRegistrar($this->playerRepository(), $this->eventBus());
         $this->handler = new PlayerRegistrationCommandHandler($registrar);
     }
 
@@ -32,12 +33,14 @@ final class PlayerRegistrationTest extends PlayerModuleUnitTestCase
     {
         $command = PlayerRegistrationStub::random();
 
-        $playerId   = PlayerIdStub::create($command->id());
-        $playerName = PlayerNameStub::create($command->name());
-        $player     = PlayerStub::create($playerId, $playerName);
+        $playerId         = PlayerIdStub::create($command->id());
+        $playerName       = PlayerNameStub::create($command->name());
+        $player           = PlayerStub::create($playerId, $playerName);
+        $playerRegistered = PlayerRegisteredStub::from($player);
 
         $this->shouldSearchPlayer($playerId);
         $this->shouldPersistPlayer($player);
+        $this->shouldHandleEvent($playerRegistered);
 
         $this->handler->handle($command);
     }

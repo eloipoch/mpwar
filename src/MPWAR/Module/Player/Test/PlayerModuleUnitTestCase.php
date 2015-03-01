@@ -24,7 +24,7 @@ abstract class PlayerModuleUnitTestCase extends UnitTestCase
         $this->playerRepository()
             ->shouldReceive('add')
             ->once()
-            ->with(m::mustBe($player))
+            ->with($this->assertEqualAggregatedRoot($player))
             ->andReturnNull();
     }
 

@@ -3,6 +3,7 @@
 namespace MPWAR\Module\Player\Domain;
 
 use DateTimeImmutable;
+use MPWAR\Module\Player\Contract\DomainEvent\PlayerRegistered;
 use SimpleBus\Message\Recorder\PrivateMessageRecorderCapabilities;
 use SimpleBus\Message\Recorder\RecordsMessages;
 
@@ -26,8 +27,22 @@ final class Player implements RecordsMessages
         return $this->id;
     }
 
+    public function name()
+    {
+        return $this->name;
+    }
+
+    public function registrationDate()
+    {
+        return $this->registrationDate;
+    }
+
     public static function register(PlayerId $id, PlayerName $name)
     {
-        return new Player($id, $name);
+        $player = new Player($id, $name);
+
+        $player->record(new PlayerRegistered($id->id(), $player->registrationDate(), $name->name()));
+
+        return $player;
     }
 }

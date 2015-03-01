@@ -13,6 +13,7 @@ use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
 use SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle;
+use SimpleBus\SymfonyBridge\SimpleBusEventBusBundle;
 use Symfony\Bundle\AsseticBundle\AsseticBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
@@ -45,6 +46,7 @@ class AppKernel extends Kernel
 
             new MPWARBundle(),
             new SimpleBusCommandBusBundle(),
+            new SimpleBusEventBusBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
