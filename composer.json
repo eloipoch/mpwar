@@ -13,6 +13,8 @@
     "sensio/generator-bundle": "2.3.*",
     "symfony/icu": "1.0.*",
 
+    "incenteev/composer-parameter-handler": "~2.1",
+
     "symfony/monolog-bundle": "~2.3",
 
     "doctrine/doctrine-bundle": "~1.4",
@@ -56,11 +58,13 @@
   },
   "scripts": {
     "post-install-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
     ],
     "post-update-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
@@ -72,6 +76,9 @@
   "minimum-stability": "stable",
   "extra": {
     "symfony-app-dir": "app",
-    "symfony-web-dir": "web"
+    "symfony-web-dir": "web",
+    "incenteev-parameters": {
+      "file": "app/config/parameters.yml"
+    }
   }
 }
