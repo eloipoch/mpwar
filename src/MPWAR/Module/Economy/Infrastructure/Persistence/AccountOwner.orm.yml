@@ -1,0 +1,8 @@
+MPWAR\Module\Economy\Domain\AccountOwner:
+  type: embeddable
+
+  id:
+    value:
+      type: string
+      length: 36
+      column: owner_id

@@ -1,6 +1,6 @@
 <?php
 
-namespace MPWAR\Module\Economy\Domain\Account;
+namespace MPWAR\Module\Economy\Domain;
 
 use MPWAR\Module\Economy\Contract\Exception\AccountOwnerNotValidException;
 use Rhumsaa\Uuid\Uuid;
@@ -19,6 +19,11 @@ final class AccountOwner
     public function value()
     {
         return $this->value;
+    }
+
+    public function __toString()
+    {
+        return $this->value();
     }
 
     private function guard($value)

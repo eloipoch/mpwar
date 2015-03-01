@@ -2,8 +2,9 @@
 
 namespace MPWAR\Module\Economy\Test\Stub;
 
-use MPWAR\Module\Economy\Domain\VirtualMoney\VirtualCurrency;
-use MPWAR\Module\Economy\Domain\VirtualMoney\VirtualMoney;
+use MPWAR\Module\Economy\Domain\VirtualCurrency;
+use MPWAR\Module\Economy\Domain\VirtualMoney;
+use MPWAR\Test\Stub\StubCreator;
 
 final class VirtualMoneyStub
 {
@@ -14,6 +15,11 @@ final class VirtualMoneyStub
 
     public static function zeroCoins()
     {
-        return VirtualMoney::coins(0);
+        return self::create(0, VirtualCurrency::coin());
+    }
+
+    public static function randomCoins()
+    {
+        return self::create(StubCreator::faker()->randomNumber(), VirtualCurrency::coin());
     }
 }

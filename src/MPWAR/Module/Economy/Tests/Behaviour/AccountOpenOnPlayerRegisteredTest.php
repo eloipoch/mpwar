@@ -4,6 +4,7 @@ namespace MPWAR\Module\Economy\Tests\Behaviour;
 
 use MPWAR\Module\Economy\Application\DomainEventSubscriber\CreateAccountOnPlayerRegistered;
 use MPWAR\Module\Economy\Application\Service\AccountOpener;
+use MPWAR\Module\Economy\Contract\Exception\AccountOwnerAlreadyHasAnAccountException;
 use MPWAR\Module\Economy\Contract\Exception\AccountOwnerNotValidException;
 use MPWAR\Module\Economy\Test\EconomyModuleUnitTestCase;
 use MPWAR\Module\Economy\Test\Stub\AccountOwnerStub;
@@ -32,7 +33,21 @@ final class AccountOpenOnPlayerRegisteredTest extends EconomyModuleUnitTestCase
         $owner   = AccountOwnerStub::create($event->aggregateId());
         $account = AccountStub::create($owner, VirtualMoneyStub::zeroCoins());
 
+        $this->shouldSearchAccount($owner);
         $this->shouldPersistAccount($account);
+
+        $this->subscriber->notify($event);
+    }
+
+    /** @test */
+    public function it_should_not_allow_open_an_account_to_an_owner_that_already_has_one()
+    {
+        $this->setExpectedException(AccountOwnerAlreadyHasAnAccountException::class);
+
+        $event = PlayerRegisteredStub::random();
+        $owner = AccountOwnerStub::create($event->aggregateId());
+
+        $this->shouldSearchAccount($owner, AccountStub::owned($owner));
 
         $this->subscriber->notify($event);
     }

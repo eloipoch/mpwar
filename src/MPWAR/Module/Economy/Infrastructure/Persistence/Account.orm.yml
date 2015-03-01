@@ -1,0 +1,11 @@
+MPWAR\Module\Economy\Domain\Account:
+  type:  entity
+  table: economy_account
+
+  embedded:
+    owner:
+      class: MPWAR\Module\Economy\Domain\AccountOwner
+      columnPrefix: false
+    balance:
+      class: MPWAR\Module\Economy\Domain\VirtualMoney
+      columnPrefix: false

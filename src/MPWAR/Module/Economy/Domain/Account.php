@@ -1,8 +1,7 @@
 <?php
 
-namespace MPWAR\Module\Economy\Domain\Account;
+namespace MPWAR\Module\Economy\Domain;
 
-use MPWAR\Module\Economy\Domain\VirtualMoney\VirtualMoney;
 use SimpleBus\Message\Recorder\PrivateMessageRecorderCapabilities;
 use SimpleBus\Message\Recorder\RecordsMessages;
 

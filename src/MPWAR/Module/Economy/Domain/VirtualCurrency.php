@@ -1,6 +1,6 @@
 <?php
 
-namespace MPWAR\Module\Economy\Domain\VirtualMoney;
+namespace MPWAR\Module\Economy\Domain;
 
 use MPWAR\Module\Economy\Contract\Exception\VirtualCurrencyNotValidException;
 
@@ -19,6 +19,11 @@ final class VirtualCurrency
     public static function coin()
     {
         return new self('coin');
+    }
+
+    public function value()
+    {
+        return $this->value;
     }
 
     private function guard($value)

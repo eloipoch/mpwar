@@ -21,15 +21,15 @@ final class PlayerId
         return $this->value;
     }
 
+    public function __toString()
+    {
+        return $this->value();
+    }
+
     private function guard($value)
     {
         if (!Uuid::isValid($value)) {
             throw new PlayerIdNotValidException($value);
         }
-    }
-
-    public function __toString()
-    {
-        return $this->value();
     }
 }

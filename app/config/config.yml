@@ -43,11 +43,18 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+          virtual_currency: MPWAR\Module\Economy\Infrastructure\Persistence\VirtualCurrencyType
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
             default:
               mappings:
+                economy:
+                  type: yml
+                  dir: %kernel.root_dir%/../src/MPWAR/Module/Economy/Infrastructure/Persistence
+                  prefix: MPWAR\Module\Economy\Domain
+                  is_bundle: false
                 player:
                   type: yml
                   dir: %kernel.root_dir%/../src/MPWAR/Module/Player/Infrastructure/Persistence

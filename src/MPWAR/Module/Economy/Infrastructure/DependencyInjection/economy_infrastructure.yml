@@ -1,8 +1,13 @@
 services:
 
   mpwar.economy.infrastructure.account_repository:
-    alias: mpwar.economy.infrastructure.account_repository.in_memory
+    alias: mpwar.economy.infrastructure.account_repository.mysql
 
   mpwar.economy.infrastructure.account_repository.in_memory:
     class: MPWAR\Module\Economy\Infrastructure\Persistence\AccountRepositoryInMemory
+
+  mpwar.economy.infrastructure.account_repository.mysql:
+    class: MPWAR\Module\Economy\Infrastructure\Persistence\AccountRepositoryMySql
+    arguments:
+      - @doctrine.orm.entity_manager
 

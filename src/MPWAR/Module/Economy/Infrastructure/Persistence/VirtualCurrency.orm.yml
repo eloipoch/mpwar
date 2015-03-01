@@ -1,0 +1,8 @@
+MPWAR\Module\Economy\Domain\VirtualCurrency:
+  type: embeddable
+
+  id:
+    value:
+      type: string
+      length: 10
+      column: currency

@@ -1,6 +1,6 @@
 <?php
 
-namespace MPWAR\Module\Economy\Domain\VirtualMoney;
+namespace MPWAR\Module\Economy\Domain;
 
 use MPWAR\Module\Economy\Contract\Exception\VirtualMoneyNotValidException;
 

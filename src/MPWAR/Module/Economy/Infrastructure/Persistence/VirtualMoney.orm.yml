@@ -1,0 +1,9 @@
+MPWAR\Module\Economy\Domain\VirtualMoney:
+  type: embeddable
+
+  fields:
+    amount:
+      type: integer
+    currency:
+      type: virtual_currency
+      length: 10
