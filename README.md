@@ -67,6 +67,7 @@ Crear la base de datos configurada anteriormente ejecutando el comando:
 Comprobar que el código funciona ejecutando los tests:
 
     ./bin/phpunit -c app/
+    ./bin/behat
 
 
 5) Empezar a Programar
