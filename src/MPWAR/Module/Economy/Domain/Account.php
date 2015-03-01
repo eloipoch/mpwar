@@ -2,6 +2,8 @@
 
 namespace MPWAR\Module\Economy\Domain;
 
+use DateTimeImmutable;
+use MPWAR\Module\Economy\Contract\DomainEvent\AccountOpened;
 use SimpleBus\Message\Recorder\PrivateMessageRecorderCapabilities;
 use SimpleBus\Message\Recorder\RecordsMessages;
 
@@ -25,6 +27,10 @@ final class Account implements RecordsMessages
 
     public static function open(AccountOwner $owner)
     {
-        return new self($owner, VirtualMoney::coins(0));
+        $account = new self($owner, VirtualMoney::coins(0));
+
+        $account->record(new AccountOpened($owner->value(), new DateTimeImmutable()));
+
+        return $account;
     }
 }

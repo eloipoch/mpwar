@@ -2,11 +2,13 @@
 
 namespace MPWAR\Module\Economy\Tests\Behaviour;
 
+use DateTimeImmutable;
 use MPWAR\Module\Economy\Application\DomainEventSubscriber\CreateAccountOnPlayerRegistered;
 use MPWAR\Module\Economy\Application\Service\AccountOpener;
 use MPWAR\Module\Economy\Contract\Exception\AccountOwnerAlreadyHasAnAccountException;
 use MPWAR\Module\Economy\Contract\Exception\AccountOwnerNotValidException;
 use MPWAR\Module\Economy\Test\EconomyModuleUnitTestCase;
+use MPWAR\Module\Economy\Test\Stub\AccountOpenedStub;
 use MPWAR\Module\Economy\Test\Stub\AccountOwnerStub;
 use MPWAR\Module\Economy\Test\Stub\AccountStub;
 use MPWAR\Module\Economy\Test\Stub\VirtualMoneyStub;
@@ -21,7 +23,7 @@ final class AccountOpenOnPlayerRegisteredTest extends EconomyModuleUnitTestCase
     {
         parent::setUp();
 
-        $opener           = new AccountOpener($this->accountRepository());
+        $opener           = new AccountOpener($this->accountRepository(), $this->eventBus());
         $this->subscriber = new CreateAccountOnPlayerRegistered($opener);
     }
 
@@ -30,11 +32,13 @@ final class AccountOpenOnPlayerRegisteredTest extends EconomyModuleUnitTestCase
     {
         $event = PlayerRegisteredStub::random();
 
-        $owner   = AccountOwnerStub::create($event->aggregateId());
-        $account = AccountStub::create($owner, VirtualMoneyStub::zeroCoins());
+        $owner         = AccountOwnerStub::create($event->aggregateId());
+        $account       = AccountStub::create($owner, VirtualMoneyStub::zeroCoins());
+        $accountOpened = AccountOpenedStub::create($owner, new DateTimeImmutable());
 
         $this->shouldSearchAccount($owner);
         $this->shouldPersistAccount($account);
+        $this->shouldHandleEvent($accountOpened);
 
         $this->subscriber->notify($event);
     }
