@@ -33,9 +33,9 @@
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
 
-                <directory>../src/Test</directory>
+                <directory>../src/MPWAR/Test</directory>
                 <directory>../src/MPWAR/Module/*/Tests</directory>
-                <directory>../src/MPWAR/Module/*/Contract/Test</directory>
+                <directory>../src/MPWAR/Module/*/Test</directory>
             </exclude>
         </whitelist>
     </filter>
@@ -43,5 +43,9 @@
     <listeners>
         <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
     </listeners>
+
+    <!--<logging>-->
+        <!--<log type="coverage-html" target="../build/coverage" lowUpperBound="70" highLowerBound="90"/>-->
+    <!--</logging>-->
 
 </phpunit>

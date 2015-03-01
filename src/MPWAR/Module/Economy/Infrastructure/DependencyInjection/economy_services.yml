@@ -16,4 +16,5 @@ services:
     class: MPWAR\Module\Economy\Application\Service\AccountOpener
     arguments:
       - @mpwar.economy.infrastructure.account_repository
+      - @event_bus
     public: false
