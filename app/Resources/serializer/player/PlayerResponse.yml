@@ -1,0 +1,17 @@
+MPWAR\Module\Player\Contract\Response\PlayerResponse:
+  exclusion_policy: ALL
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    registrationDate:
+      type: DateTime
+  relations:
+    -
+      rel: self
+      href:
+        route: player_get
+        parameters:
+          playerId: expr(object.id())
+        absolute: true

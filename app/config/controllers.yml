@@ -4,3 +4,8 @@ services:
     class: MPWAR\Api\Controller\Player\PlayerPostController
     arguments:
       - @command_bus
+
+  mpwar.controller.player.get:
+    class: MPWAR\Api\Controller\Player\PlayerGetController
+    arguments:
+      - @oracle

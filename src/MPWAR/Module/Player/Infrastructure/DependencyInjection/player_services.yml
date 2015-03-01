@@ -9,6 +9,15 @@ services:
     tags:
       - { name: command_handler, handles: MPWAR\Module\Player\Contract\Command\PlayerRegistration }
 
+  # Query Handlers
+
+  mpwar.player.query_handler.player_find:
+    class: MPWAR\Module\Player\Application\QueryHandler\PlayerFindQueryHandler
+    arguments:
+      - @mpwar.player.service.player_finder
+    tags:
+      - { name: query_handler, handles: MPWAR\Module\Player\Contract\Query\PlayerFind }
+
 
   # Services
 
@@ -17,4 +26,10 @@ services:
     arguments:
       - @mpwar.player.infrastructure.player_repository
       - @event_bus
+    public: false
+
+  mpwar.player.service.player_finder:
+    class: MPWAR\Module\Player\Application\Service\PlayerFinder
+    arguments:
+      - @mpwar.player.infrastructure.player_repository
     public: false

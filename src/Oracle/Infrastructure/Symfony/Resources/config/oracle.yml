@@ -1,0 +1,33 @@
+services:
+    oracle:
+        alias: oracle.oracle_simple
+
+    oracle.oracle_simple:
+        class: Oracle\Domain\OracleSimple
+        arguments:
+            - @oracle.query_handler_resolver
+        public: false
+
+    oracle.query_handler_resolver:
+        class: Oracle\Domain\Handler\Resolver\NameBasedQueryHandlerResolver
+        arguments:
+            - @oracle.class_based_query_name_resolver
+            - @oracle.query_handler_map
+        public: false
+
+    oracle.class_based_query_name_resolver:
+        class: Oracle\Domain\Name\ClassBasedNameResolver
+        public: false
+
+    oracle.query_handler_map:
+        class: Oracle\Domain\Handler\Map\LazyLoadingQueryHandlerMap
+        arguments:
+            - []
+            - @oracle.invokable_service_locator
+        public: false
+
+    oracle.invokable_service_locator:
+        class: SimpleBus\SymfonyBridge\DependencyInjection\InvokableServiceLocator
+        arguments:
+            - @service_container
+        public: false

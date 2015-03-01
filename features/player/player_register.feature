@@ -6,7 +6,7 @@ Feature: Register a player
 
   Scenario: Register a player
     Given I set header "HTTP_ACCEPT" with value "application/json"
-    Given I set header "CONTENT_TYPE" with value "application/json"
+    And I set header "CONTENT_TYPE" with value "application/json"
     When I send a POST request to "/players" with body:
     """
       {

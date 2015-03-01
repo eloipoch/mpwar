@@ -9,6 +9,7 @@ use Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle;
 use JMS\SerializerBundle\JMSSerializerBundle;
 use MPWAR\Infrastructure\Symfony\Bundle\MPWARBundle;
 use Nelmio\ApiDocBundle\NelmioApiDocBundle;
+use Oracle\Infrastructure\Symfony\OracleBundle;
 use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
@@ -47,6 +48,7 @@ class AppKernel extends Kernel
             new MPWARBundle(),
             new SimpleBusCommandBusBundle(),
             new SimpleBusEventBusBundle(),
+            new OracleBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

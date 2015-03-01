@@ -45,6 +45,7 @@ doctrine:
         charset:  UTF8
         types:
           virtual_currency: MPWAR\Module\Economy\Infrastructure\Persistence\VirtualCurrencyType
+          datetime: MPWAR\Infrastructure\Doctrine\DBAL\DateTimeType
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
@@ -91,3 +92,13 @@ fos_rest:
     access_denied_listener:
         json: true
     body_listener: true
+
+jms_serializer:
+    metadata:
+        directories:
+            player:
+                namespace_prefix: "MPWAR\\Module\\Player\\Contract\\Response"
+                path: %kernel.root_dir%/Resources/serializer/player
+
+parameters:
+   jms_serializer.datetime_handler.class: MPWAR\Api\Infrastructure\JMSSerializer\DateTimeHandler

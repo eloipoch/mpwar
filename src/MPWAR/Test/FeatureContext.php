@@ -6,8 +6,11 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Mink\Driver\BrowserKitDriver;
 use Behat\MinkExtension\Context\RawMinkContext;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManager;
 use MPWAR\Infrastructure\Doctrine\DatabaseCleaner;
+use MPWAR\Test\PHPUnit\Constraint\ConstraintIsSimilar;
 use PHPUnit_Framework_Assert as Assertions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,8 +74,8 @@ class FeatureContext extends RawMinkContext implements SnippetAcceptingContext
     public function theResponseShouldBe(PyStringNode $content)
     {
         if ($this->getResponseHeader('Content-Type') === 'application/json') {
-            Assertions::assertJsonStringEqualsJsonString(
-                $content->getRaw(),
+            $this->assertJsonStringEqualsJsonString(
+                $this->adaptContent($content->getRaw()),
                 $this->getResponse()->getContent(),
                 sprintf('The content of the response is not the expected')
             );
@@ -146,5 +149,36 @@ class FeatureContext extends RawMinkContext implements SnippetAcceptingContext
         $this->getClient()->request($method, $url, [], [], $this->headers, $content);
 
         $this->headers = [];
+    }
+
+    private function adaptContent($content)
+    {
+        return $this->convertRelativeDates($content);
+    }
+
+    public static function assertJsonStringEqualsJsonString($expectedJson, $actualJson, $message = '')
+    {
+        Assertions::assertJson($expectedJson, $message);
+        Assertions::assertJson($actualJson, $message);
+
+        $expected = json_decode($expectedJson);
+        $actual   = json_decode($actualJson);
+
+        Assertions::assertThat($actual, new ConstraintIsSimilar($expected), $message);
+    }
+
+    private function convertRelativeDates($expectedResponse)
+    {
+        if (preg_match_all('/\#date (?<dates>[^\#]+)\#/', $expectedResponse, $matches)) {
+            foreach ($matches['dates'] as $date) {
+                $expectedResponse = str_replace(
+                    sprintf('#date %s#', $date),
+                    (new DateTimeImmutable($date))->format(DateTime::ISO8601),
+                    $expectedResponse
+                );
+            }
+        }
+
+        return $expectedResponse;
     }
 }

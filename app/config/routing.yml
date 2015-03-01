@@ -2,7 +2,12 @@ api_docs:
   resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
   prefix:   /api/doc
 
-players_post:
+player_post:
   path:     /players
   defaults: { _controller: mpwar.controller.player.post:__invoke }
   methods:  [POST]
+
+player_get:
+  path:     /players/{playerId}
+  defaults: { _controller: mpwar.controller.player.get:__invoke }
+  methods:  [GET]
