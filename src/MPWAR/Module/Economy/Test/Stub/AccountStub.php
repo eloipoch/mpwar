@@ -18,6 +18,11 @@ final class AccountStub
         return self::create($owner, VirtualMoneyStub::randomCoins());
     }
 
+    public static function zeroCoins()
+    {
+        return self::create(AccountOwnerStub::random(), VirtualMoneyStub::zeroCoins());
+    }
+
     public static function random()
     {
         return self::create(AccountOwnerStub::random(), VirtualMoneyStub::randomCoins());

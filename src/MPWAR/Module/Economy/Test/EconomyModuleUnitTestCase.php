@@ -28,6 +28,15 @@ abstract class EconomyModuleUnitTestCase extends UnitTestCase
             ->andReturnNull();
     }
 
+    protected function shouldSaveAccount(Account $account)
+    {
+        $this->accountRepository()
+            ->shouldReceive('save')
+            ->once()
+            ->with($this->assertEqualAggregatedRoot($account))
+            ->andReturnNull();
+    }
+
     protected function shouldSearchAccount(AccountOwner $owner, Account $account = null)
     {
         $this->accountRepository()
