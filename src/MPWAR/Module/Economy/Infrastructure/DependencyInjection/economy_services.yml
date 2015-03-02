@@ -9,6 +9,13 @@ services:
     tags:
       - { name: event_subscriber, subscribes_to: MPWAR\Module\Player\Contract\DomainEvent\PlayerRegistered }
 
+  mpwar.economy.domain_event_subscriber.give_welcome_bonus_on_account_opened:
+    class: MPWAR\Module\Economy\Application\DomainEventSubscriber\GiveWelcomeBonusOnAccountOpened
+    arguments:
+      - @mpwar.economy.service.transaction_processor
+    tags:
+      - { name: event_subscriber, subscribes_to: MPWAR\Module\Economy\Contract\DomainEvent\AccountOpened }
+
 
   # Services
 
@@ -17,4 +24,10 @@ services:
     arguments:
       - @mpwar.economy.infrastructure.account_repository
       - @event_bus
+    public: false
+
+  mpwar.economy.service.transaction_processor:
+    class: MPWAR\Module\Economy\Application\Service\TransactionProcessor
+    arguments:
+      - @mpwar.economy.infrastructure.account_repository
     public: false
