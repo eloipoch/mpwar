@@ -30,4 +30,5 @@ services:
     class: MPWAR\Module\Economy\Application\Service\TransactionProcessor
     arguments:
       - @mpwar.economy.infrastructure.account_repository
+      - @event_bus
     public: false

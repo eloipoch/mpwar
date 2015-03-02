@@ -3,6 +3,7 @@
 namespace MPWAR\Module\Economy\Domain;
 
 use DateTimeImmutable;
+use MPWAR\Module\Economy\Contract\DomainEvent\AccountBalanceChanged;
 use MPWAR\Module\Economy\Contract\DomainEvent\AccountOpened;
 use SimpleBus\Message\Recorder\PrivateMessageRecorderCapabilities;
 use SimpleBus\Message\Recorder\RecordsMessages;
@@ -42,5 +43,9 @@ final class Account implements RecordsMessages
     public function add(VirtualMoney $money)
     {
         $this->balance = $this->balance()->add($money);
+
+        $this->record(
+            new AccountBalanceChanged($this->owner()->value(), $money->amount(), $money->currency()->value())
+        );
     }
 }

@@ -30,6 +30,16 @@ final class VirtualMoney
         return new self($this->amount + $other->amount, $this->currency);
     }
 
+    public function amount()
+    {
+        return $this->amount;
+    }
+
+    public function currency()
+    {
+        return $this->currency;
+    }
+
     private function guard($amount)
     {
         if (!is_int($amount) || 0 > $amount) {
