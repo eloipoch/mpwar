@@ -14,3 +14,5 @@ default:
             entityManager: @doctrine.orm.entity_manager
         - MPWAR\Module\Player\Test\PlayerContext:
             commandBus: @command_bus
+        - MPWAR\Module\Economy\Test\EconomyContext:
+            repository: @mpwar.economy.infrastructure.account_repository

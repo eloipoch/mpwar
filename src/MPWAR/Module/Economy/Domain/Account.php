@@ -25,6 +25,11 @@ final class Account implements RecordsMessages
         return $this->owner;
     }
 
+    public function balance()
+    {
+        return $this->balance;
+    }
+
     public static function open(AccountOwner $owner)
     {
         $account = new self($owner, VirtualMoney::coins(0));
