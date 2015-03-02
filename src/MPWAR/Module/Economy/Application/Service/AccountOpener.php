@@ -8,7 +8,7 @@ use MPWAR\Module\Economy\Domain\Account;
 use MPWAR\Module\Economy\Domain\AccountOwner;
 use MPWAR\Module\Economy\Domain\AccountRepository;
 use SimpleBus\Message\Bus\MessageBus;
-use SimpleBus\Message\Message;
+use SimpleBus\Message\Type\Event;
 
 final class AccountOpener
 {
@@ -29,7 +29,7 @@ final class AccountOpener
 
         $this->repository->add($account);
 
-        iter\apply($this->handleEvent(), $account->recordedMessages());
+        $this->publishDomainEvents($account);
     }
 
     private function guardOneAccountPerOwner(AccountOwner $owner)
@@ -41,9 +41,15 @@ final class AccountOpener
         }
     }
 
+    private function publishDomainEvents(Account $account)
+    {
+        iter\apply($this->handleEvent(), $account->recordedMessages());
+        $account->eraseMessages();
+    }
+
     private function handleEvent()
     {
-        return function (Message $event) {
+        return function (Event $event) {
             $this->eventBus->handle($event);
         };
     }

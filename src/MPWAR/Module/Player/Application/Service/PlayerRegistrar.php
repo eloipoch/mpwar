@@ -9,7 +9,7 @@ use MPWAR\Module\Player\Domain\PlayerId;
 use MPWAR\Module\Player\Domain\PlayerName;
 use MPWAR\Module\Player\Domain\PlayerRepository;
 use SimpleBus\Message\Bus\MessageBus;
-use SimpleBus\Message\Message;
+use SimpleBus\Message\Type\Event;
 
 final class PlayerRegistrar
 {
@@ -30,7 +30,7 @@ final class PlayerRegistrar
 
         $this->repository->add($player);
 
-        iter\apply($this->handleEvent(), $player->recordedMessages());
+        $this->publishDomainEvents($player);
     }
 
     private function guardPlayerId(PlayerId $id)
@@ -42,9 +42,15 @@ final class PlayerRegistrar
         }
     }
 
+    private function publishDomainEvents(Player $player)
+    {
+        iter\apply($this->handleEvent(), $player->recordedMessages());
+        $player->eraseMessages();
+    }
+
     private function handleEvent()
     {
-        return function (Message $event) {
+        return function (Event $event) {
             $this->eventBus->handle($event);
         };
     }
