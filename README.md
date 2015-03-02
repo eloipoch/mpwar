@@ -1,7 +1,7 @@
 Symfony MPWAR Edition
 =====================
 
-[![Build Status](https://travis-ci.org/eloipoch/mpwar.svg)](https://travis-ci.org/eloipoch/mpwar)
+[![Build Status](https://travis-ci.org/eloipoch/mpwar.svg?branch=master)](https://travis-ci.org/eloipoch/mpwar)
 
 Bienvenidos al Symfony MPWAR Edition, un proyecto SF2 totalmente
 funcional para que podais tocar con vuestras manos siguiendo la
