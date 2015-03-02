@@ -20,6 +20,15 @@ final class Account implements RecordsMessages
         $this->balance = $balance;
     }
 
+    public static function open(AccountOwner $owner)
+    {
+        $account = new self($owner, VirtualMoney::coins(0));
+
+        $account->record(new AccountOpened($owner->value(), new DateTimeImmutable()));
+
+        return $account;
+    }
+
     public function owner()
     {
         return $this->owner;
@@ -30,12 +39,8 @@ final class Account implements RecordsMessages
         return $this->balance;
     }
 
-    public static function open(AccountOwner $owner)
+    public function add(VirtualMoney $money)
     {
-        $account = new self($owner, VirtualMoney::coins(0));
-
-        $account->record(new AccountOpened($owner->value(), new DateTimeImmutable()));
-
-        return $account;
+        $this->balance = $this->balance()->add($money);
     }
 }

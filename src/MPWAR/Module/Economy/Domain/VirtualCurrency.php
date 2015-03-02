@@ -26,6 +26,11 @@ final class VirtualCurrency
         return $this->value;
     }
 
+    public function equals(VirtualCurrency $other)
+    {
+        return $this->value === $other->value;
+    }
+
     private function guard($value)
     {
         if (!in_array($value, self::$allowed)) {
