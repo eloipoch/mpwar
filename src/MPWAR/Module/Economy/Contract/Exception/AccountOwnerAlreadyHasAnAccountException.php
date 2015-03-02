@@ -2,10 +2,10 @@
 
 namespace MPWAR\Module\Economy\Contract\Exception;
 
-use InvalidArgumentException;
+use DomainException;
 use MPWAR\Module\Economy\Domain\AccountOwner;
 
-final class AccountOwnerAlreadyHasAnAccountException extends InvalidArgumentException
+final class AccountOwnerAlreadyHasAnAccountException extends DomainException
 {
     public function __construct(AccountOwner $owner)
     {
