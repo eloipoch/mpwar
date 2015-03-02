@@ -17,4 +17,11 @@ interface AccountRepository
      * @return Account|null
      */
     public function search(AccountOwner $owner);
+
+    /**
+     * @param Account $account
+     *
+     * @return void
+     */
+    public function save(Account $account);
 }

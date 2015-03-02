@@ -18,13 +18,23 @@ final class AccountRepositoryMySql implements AccountRepository
 
     public function add(Account $account)
     {
-        $this->entityManager->persist($account);
-        $this->entityManager->flush($account);
+        $this->persist($account);
     }
 
     public function search(AccountOwner $owner)
     {
         return $this->repository()->find($owner);
+    }
+
+    public function save(Account $account)
+    {
+        $this->persist($account);
+    }
+
+    protected function persist(Account $account)
+    {
+        $this->entityManager->persist($account);
+        $this->entityManager->flush($account);
     }
 
     private function repository()

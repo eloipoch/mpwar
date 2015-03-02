@@ -18,11 +18,21 @@ final class AccountRepositoryInMemory implements AccountRepository
 
     public function add(Account $account)
     {
-        $this->accounts->set($account->owner()->value(), $account);
+        $this->persist($account);
     }
 
     public function search(AccountOwner $owner)
     {
         return $this->accounts->get($owner->value());
+    }
+
+    public function save(Account $account)
+    {
+        $this->persist($account);
+    }
+
+    private function persist(Account $account)
+    {
+        $this->accounts->set($account->owner()->value(), $account);
     }
 }
